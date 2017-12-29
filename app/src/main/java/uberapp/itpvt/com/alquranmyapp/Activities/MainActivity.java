@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                 listItem.put("englishName",surahNameData.getString("englishName") );
                                 listItem.put("name",surahNameData.getString("name"));
                                 listItem.put("number", surahNameData.getString("number"));
+                                //listItem.put("surahNum")
                                 mapList.add(listItem);
                                // listItem.clear();
                             }
