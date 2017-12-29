@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     List<HashMap<String,String>> mapList;
     HashMap<String,String> listItem;
     SurahNameAdapter adapter;
+   public static TextView tvMessage;
     RecyclerView rv;
+    public static ProgressBar progressbar;
+
     LinearLayoutManager layoutManager;
 
     @Override
@@ -40,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
        // tvSurah = (TextView) findViewById(R.id.tvSurah);
+        progressbar = (ProgressBar)findViewById(R.id.progress_view);
         mapList = new ArrayList<>();
         listItem = new HashMap<>();
         rv = (RecyclerView) findViewById(R.id.recycler_view);
-
+        tvMessage = (TextView) findViewById(R.id.tvMessage);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
                 new Response.Listener<String>() {
@@ -64,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                                 listItem.put("englishName",surahNameData.getString("englishName") );
                                 listItem.put("name",surahNameData.getString("name"));
                                 listItem.put("number", surahNameData.getString("number"));
+                                //listItem.put("surahNum")
                                 mapList.add(listItem);
                                // listItem.clear();
                             }

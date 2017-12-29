@@ -32,6 +32,9 @@ public class SurahTranslation extends AppCompatActivity {
     String url;
     List<HashMap<String,String>> mapListAyahTranslation;
     List<HashMap<String,String>> mapListAyah;
+    List<HashMap<String,String>> mapNumberList;
+
+    HashMap<String,String> mapNumerItem;
 
     //List<HashMap<String,String>> mapListTranslation;
 
@@ -48,6 +51,11 @@ public class SurahTranslation extends AppCompatActivity {
         setContentView(R.layout.activity_surah_translation);
 
         rv = (RecyclerView) findViewById(R.id.recycler_view);
+
+
+        mapNumerItem = new HashMap<>();
+        mapNumberList = new ArrayList<>();
+
 
         //Intent intent = new Intent();
         surahNum = getIntent().getStringExtra("ayahNumber");
@@ -84,30 +92,32 @@ public class SurahTranslation extends AppCompatActivity {
                                             for (int s = 0; s < ayah.length(); s++) {
                                                 JSONObject ayahObj = ayah.getJSONObject(s);
                                                 listItemAyah = new HashMap<>();
-
+                                                mapNumerItem = new HashMap<>();
                                                 if (s == 0) {
                                                     String f = ayahObj.getString("text");
-                                                    String bis = f.substring(0,2);
-                                                    String at = f.substring(3,f.length());
+                                                    String bis = f.substring(0,38);
+                                                    String at = f.substring(38,f.length());
                                                     listItemAyah.put("ayah", bis);
+                                                    mapListAyah.add(listItemAyah);
+                                                    listItemAyah = new HashMap<>();
                                                     listItemAyah.put("ayah", at);
-
+                                                    mapListAyah.add(listItemAyah);
+                                                    mapNumerItem.put("number",ayahObj.getString("number"));
+                                                    mapNumberList.add(mapNumerItem);
+                                                    mapNumerItem = new HashMap<>();
+                                                    mapNumerItem.put("number",ayahObj.getString("number"));
+                                                    mapNumberList.add(mapNumerItem);
                                                 }
-
-
-
-
-
-
-
 
 
                                                 else if (s>0){
 //                                                listItemAyah.put(String.valueOf(i), ayahObj.getString("text"));
-                                                    listItemAyah.put("ayah", ayahObj.getString("text"));
-                                                }
-                                                    mapListAyah.add(listItemAyah);
+                                                    mapNumerItem.put("number",ayahObj.getString("number"));
 
+                                                    listItemAyah.put("ayah", ayahObj.getString("text"));
+                                                    mapNumberList.add(mapNumerItem);
+                                                    mapListAyah.add(listItemAyah);
+                                                }
 
                                             }
 
@@ -135,7 +145,11 @@ public class SurahTranslation extends AppCompatActivity {
 //                                                        String bis = f.substring(0,18);
 //                                                        String at = f.substring(18,8);
                                                     listItemAyahTranslation.put("translation", "  ");
+                                                    mapListAyahTranslation.add(listItemAyahTranslation);
+                                                   listItemAyahTranslation = new HashMap<>();
+                                                   // listItemAyahTranslation.clear();
                                                     listItemAyahTranslation.put("translation", f);
+                                                    mapListAyahTranslation.add(listItemAyahTranslation);
 
                                                 }
 
@@ -144,10 +158,10 @@ public class SurahTranslation extends AppCompatActivity {
 //                                                listItemAyahTranslation.put(String.valueOf(i), ayahObj.getString("text"));
                                                 else if (s>0){
                                                     listItemAyahTranslation.put("translation", ayahObj.getString("text"));
-
+                                                    mapListAyahTranslation.add(listItemAyahTranslation);
 
                                                 }
-                                                mapListAyahTranslation.add(listItemAyahTranslation);
+
 
                                             }
 
@@ -230,7 +244,7 @@ public class SurahTranslation extends AppCompatActivity {
 //
 //                            rv.setAdapter(adapter);
 //                            rv.setLayoutManager(llm);
-                        adapter = new SurahTranslationAdapter(SurahTranslation.this, mapListAyah, mapListAyahTranslation);
+                        adapter = new SurahTranslationAdapter(SurahTranslation.this, mapListAyah, mapListAyahTranslation,mapNumberList);
                         LinearLayoutManager llm = new LinearLayoutManager(SurahTranslation.this);
                         llm.setOrientation(LinearLayoutManager.VERTICAL);
                             rv.setLayoutManager(llm);
