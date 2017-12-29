@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation">
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:id="@+id/btnPlay"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
