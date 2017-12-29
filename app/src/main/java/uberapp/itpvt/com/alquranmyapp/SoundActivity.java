@@ -52,7 +52,9 @@ public class SoundActivity extends AppCompatActivity {
         MediaPlayer mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
-            mediaPlayer.setDataSource(urlDownloadLink);
+
+            String filename = extractFilename();
+            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
             mediaPlayer.prepare();
 
         } catch (IOException e) {
