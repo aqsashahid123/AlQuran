@@ -8,8 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +85,7 @@ public class SurahNameAdapter extends RecyclerView.Adapter<SurahNameAdapter.Sura
                 mapItem = mapList.get(position);
                 Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
                 intent.putExtra("ayahNumber", mapItem.get("number") );
+
                 //  context.startActivity(intent);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.getApplicationContext().startActivity(intent);
@@ -112,7 +115,12 @@ public class SurahNameAdapter extends RecyclerView.Adapter<SurahNameAdapter.Sura
 
             }
         });
-
+//
+//        holder.play.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//            }
+//        });
 
     }
 
@@ -126,6 +134,8 @@ public class SurahNameAdapter extends RecyclerView.Adapter<SurahNameAdapter.Sura
 
     TextView tvSurahNameArabic, tvSurahNameEnglish,tvMessage;
     ImageView ivDownload;
+//    SeekBar seekBar;
+//    Button play,pause;
 
     public SurahNameHolder(View itemView) {
         super(itemView);
@@ -134,6 +144,11 @@ public class SurahNameAdapter extends RecyclerView.Adapter<SurahNameAdapter.Sura
         tvSurahNameArabic = itemView.findViewById(R.id.tvSurahNameArabic);
         tvSurahNameEnglish = itemView.findViewById(R.id.tvSurahNameEnglish);
         ivDownload = itemView.findViewById(R.id.ivDownload);
+//        seekBar=itemView.findViewById(R.id.seekBar);
+//        play=itemView.findViewById(R.id.start);
+//        pause=itemView.findViewById(R.id.stop);
+//        seekBar.setVisibility(View.GONE);
+
     }
 }
 

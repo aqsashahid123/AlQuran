@@ -93,10 +93,6 @@ public class SurahTranslationAdapter extends RecyclerView.Adapter<SurahTranslati
                 mapNumberListItem = numberList.get(position);
                 Toast.makeText(context.getApplicationContext(),mapNumberListItem.get("number"),Toast.LENGTH_SHORT).show();
 
-
-
-
-
             }
         });
 

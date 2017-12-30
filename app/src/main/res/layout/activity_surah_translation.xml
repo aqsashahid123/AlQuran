@@ -7,19 +7,36 @@
     android:orientation="vertical"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation">
 
-
-    <Button
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/btnPlay"/>
+        android:id="@+id/seekBar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@drawable/playbtn"
+            android:id="@+id/btnPlay"
+            />
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@drawable/stop"
+            android:id="@+id/btnstop" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical" />
-
-
-
 </LinearLayout>

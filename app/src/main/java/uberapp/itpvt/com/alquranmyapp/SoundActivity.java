@@ -37,6 +37,7 @@ public class SoundActivity extends AppCompatActivity {
     Handler handler;
     SeekBar seekBar;
     Button stop;
+    String s_numer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class SoundActivity extends AppCompatActivity {
         handler = new Handler();
         btnPlay = (Button) findViewById(R.id.btnPlay);
         seekBar = (SeekBar) findViewById(R.id.seekBar);
+        stop=(Button)findViewById(R.id.btnstop);
         downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
         if(!audioVoice.exists()){
@@ -54,58 +56,59 @@ public class SoundActivity extends AppCompatActivity {
         }
 
 
+
        // urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
 
 
        // progressbar = (ProgressBar)findViewById(R.id.progress_view);
-
-         mediaPlayer = new MediaPlayer();
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        try {
-
-            String filename = extractFilename();
-//            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
-
-            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + "114.mp3");
-
-            mediaPlayer.prepare();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-//                mediaPlayer.prepare(); // might take long! (for buffering, etc)
-
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mediaPlayer) {
-                seekBar.setMax(mediaPlayer.getDuration());
-                mediaPlayer.start();
-                playCycle();
-            }
-        });
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
-                if (b) {
-
-                    mediaPlayer.seekTo(i);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-
-
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+//
+//         mediaPlayer = new MediaPlayer();
+//        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//        try {
+//
+//            String filename = extractFilename();
+////            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
+//
+//            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator +"114.mp3");
+//
+//            mediaPlayer.prepare();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+////                mediaPlayer.prepare(); // might take long! (for buffering, etc)
+//
+//        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mediaPlayer) {
+//                seekBar.setMax(mediaPlayer.getDuration());
+//                mediaPlayer.start();
+//                playCycle();
+//            }
+//        });
+//        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+//
+//                if (b) {
+//
+//                    mediaPlayer.seekTo(i);
+//                }
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {
+//
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {
+//
+//            }
+//        });
 
 
    //     mediaPlayer.start();
@@ -115,18 +118,65 @@ public class SoundActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
+                mediaPlayer = new MediaPlayer();
+                mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                try {
 
+                    String filename = extractFilename();
+//            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
 
-                if(urlDownloadLink.equals("")){
-                    Toast.makeText(SoundActivity.this, "Please add audio download link", Toast.LENGTH_LONG).show();
-                    return;
+                    mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator +"114.mp3");
+
+                    mediaPlayer.prepare();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                String filename = extractFilename();
-               downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + filename;
-          //      downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + "114.mp3";
+//                mediaPlayer.prepare(); // might take long! (for buffering, etc)
 
-                DownloadFile downloadAudioFile = new DownloadFile();
-                downloadAudioFile.execute(urlDownloadLink, downloadAudioPath);
+                mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        seekBar.setMax(mediaPlayer.getDuration());
+                        mediaPlayer.start();
+                        playCycle();
+                    }
+                });
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                        if (b) {
+
+                            mediaPlayer.seekTo(i);
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
+
+
+//                if(urlDownloadLink.equals("")){
+//                    Toast.makeText(SoundActivity.this, "Please add audio download link", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//                String filename = extractFilename();
+//               downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + filename;
+//          //      downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + "114.mp3";
+//
+//                DownloadFile downloadAudioFile = new DownloadFile();
+//                downloadAudioFile.execute(urlDownloadLink, downloadAudioPath);
 
             }
 
