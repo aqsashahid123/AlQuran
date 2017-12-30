@@ -9,11 +9,20 @@
     android:orientation="vertical"
     tools:context="uberapp.itpvt.com.alquranmyapp.SoundActivity">
 
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"/>
+
+
+
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="play"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@drawable/playbtn"
         android:id="@+id/btnPlay"
         />
     <ProgressBar

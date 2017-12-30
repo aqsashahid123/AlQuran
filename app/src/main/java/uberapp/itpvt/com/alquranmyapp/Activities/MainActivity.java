@@ -1,12 +1,19 @@
 package uberapp.itpvt.com.alquranmyapp.Activities;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -29,6 +36,8 @@ import uberapp.itpvt.com.alquranmyapp.Adapters.SurahNameAdapter;
 public class MainActivity extends AppCompatActivity {
     private String urlJsonObj = "http://api.alquran.cloud/surah";
 
+    Toolbar toolbar;
+
     TextView tvSurah;
     List<HashMap<String,String>> mapList;
     HashMap<String,String> listItem;
@@ -38,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public static ProgressBar progressbar;
 
     LinearLayoutManager layoutManager;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,53 @@ public class MainActivity extends AppCompatActivity {
         listItem = new HashMap<>();
         rv = (RecyclerView) findViewById(R.id.recycler_view);
         tvMessage = (TextView) findViewById(R.id.tvMessage);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+        toolbar.inflateMenu(R.menu.toolbar_menu);
+        toolbar.setTitle("Al Quran");
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.openMenu:
+                        drawerLayout.openDrawer(Gravity.RIGHT);
+                        break;
+
+                }
+
+
+                return true;
+            }
+        });
+
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+
+                    case R.id.recitation:
+
+
+                        Intent intent = new Intent(MainActivity.this,RecitationActivity.class);
+                        startActivity(intent);
+
+                        break;
+
+                }
+
+
+                return true;
+            }
+        });
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
                 new Response.Listener<String>() {

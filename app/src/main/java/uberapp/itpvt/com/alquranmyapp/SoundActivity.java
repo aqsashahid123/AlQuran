@@ -5,11 +5,13 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -30,13 +32,21 @@ public class SoundActivity extends AppCompatActivity {
     private String downloadAudioPath;
     private String urlDownloadLink = "";
     private ProgressBar progressbar;
+    MediaPlayer mediaPlayer;
+    Runnable runnable;
+    Handler handler;
+    SeekBar seekBar;
+    Button stop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sound);
 
+
+        handler = new Handler();
         btnPlay = (Button) findViewById(R.id.btnPlay);
+        seekBar = (SeekBar) findViewById(R.id.seekBar);
         downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
         if(!audioVoice.exists()){
@@ -44,24 +54,61 @@ public class SoundActivity extends AppCompatActivity {
         }
 
 
-        urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
+       // urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
 
 
-        progressbar = (ProgressBar)findViewById(R.id.progress_view);
+       // progressbar = (ProgressBar)findViewById(R.id.progress_view);
 
-        MediaPlayer mediaPlayer = new MediaPlayer();
+         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
 
             String filename = extractFilename();
-            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
+//            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
+
+            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + "114.mp3");
+
             mediaPlayer.prepare();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 //                mediaPlayer.prepare(); // might take long! (for buffering, etc)
-        mediaPlayer.start();
+
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mediaPlayer) {
+                seekBar.setMax(mediaPlayer.getDuration());
+                mediaPlayer.start();
+                playCycle();
+            }
+        });
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                if (b) {
+
+                    mediaPlayer.seekTo(i);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+   //     mediaPlayer.start();
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,59 +122,35 @@ public class SoundActivity extends AppCompatActivity {
                     return;
                 }
                 String filename = extractFilename();
-                downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + filename;
+               downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + filename;
+          //      downloadAudioPath = downloadAudioPath + File.separator + "voices" + File.separator + "114.mp3";
+
                 DownloadFile downloadAudioFile = new DownloadFile();
                 downloadAudioFile.execute(urlDownloadLink, downloadAudioPath);
-               // audioText.setText("");
+
             }
 
 
-//                File file = new File("114");
-//                if(file.exists()){
-//                    Toast.makeText(getApplicationContext(),"File Exists",Toast.LENGTH_SHORT).show();
-//                }else{
 
-
-//                    url = ;
-//                    URL url = "http://localhost/alquran/114.mp3";
-//                    url = new URL(url);
-//                    HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//
-//                    urlConnection.setRequestMethod("GET");
-//                    urlConnection.setDoOutput(true);
-//
-//                    //connect
-//                    urlConnection.connect();
-//
-//
-//                    File SDCardRoot = Environment.getExternalStorageDirectory();
-//                     file = new File(SDCardRoot,"114");
-//
-//                    try {
-//                        FileOutputStream fileOutput = new FileOutputStream(file);
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
-//                    InputStream inputStream = urlConnection.getInputStream();
-//                    totalSize = urlConnection.getContentLength();
-//
-
-
-
-
-
-
-               // }
-
-
-
-
-
-
-
-
-//            }
         });
+
+
+    }
+    public void playCycle(){
+
+        seekBar.setProgress(mediaPlayer.getCurrentPosition());
+        if (mediaPlayer.isPlaying()){
+            runnable = new Runnable() {
+                @Override
+                public void run() {
+                    playCycle();
+                }
+            };
+            handler.postDelayed(runnable,1000);
+
+        }
+
+
 
 
     }
