@@ -59,6 +59,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+
         rv = (RecyclerView) findViewById(R.id.rv);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
