@@ -26,6 +26,7 @@ import java.util.List;
 
 import uberapp.itpvt.com.alquranmyapp.Activities.MainActivity;
 import uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation;
+import uberapp.itpvt.com.alquranmyapp.Pojo.SearchPojo;
 import uberapp.itpvt.com.alquranmyapp.R;
 
 /**
@@ -35,18 +36,18 @@ import uberapp.itpvt.com.alquranmyapp.R;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHolder>{
 
         Context context;
-        List<HashMap<String,String>> mapList;
-        ArrayList<String> searchData;
-        HashMap<String,String> mapItem;
+        //List<HashMap<String,String>> mapList;
+        ArrayList<SearchPojo> searchData;
+      //  HashMap<String,String> mapItem;
         String urlDownloadLink;
         String downloadAudioPath;
 
 
-        public SearchAdapter(Context context, List<HashMap<String,String>> mapList,ArrayList<String> searchData){
+        public SearchAdapter(Context context,ArrayList<SearchPojo> searchData){
 
 
             this.context = context;
-            this.mapList = mapList;
+          //  this.mapList = mapList;
             this.searchData = searchData;
         }
 
@@ -63,67 +64,67 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHold
 
         @Override
         public void onBindViewHolder(SearchHolder holder, final int position) {
-            mapItem = new HashMap<>();
-            mapItem = mapList.get(position);
+            //mapItem = new HashMap<>();
+            //mapItem = mapList.get(position);
        //     holder.tvSurahNameEnglish.setText(mapItem.get("englishName"));
-            holder.tvSurahNameArabic.setText(searchData.get(position));
+            holder.tvSurahNameArabic.setText(searchData.get(position).getName());
 
-            holder.tvSurahNameArabic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mapItem = mapList.get(position);
-                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
-                    intent.putExtra("ayahNumber", mapItem.get("number") );
-                    //  context.startActivity(intent);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.getApplicationContext().startActivity(intent);
-                }
-            });
-            holder.tvSurahNameEnglish.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mapItem = mapList.get(position);
-                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
-                    intent.putExtra("ayahNumber", mapItem.get("number") );
-
-                    //  context.startActivity(intent);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    context.getApplicationContext().startActivity(intent);
-                }
-            });
-            holder.ivDownload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
-                    urlDownloadLink = "http://192.168.10.4/alquran/" + mapItem.get("number") + ".mp3";
-
-
-                    downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                    File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
-                    if(!audioVoice.exists()){
-                        audioVoice.mkdir();
-                    }
-
-
-                    if(urlDownloadLink.equals("")) {
-                        Toast.makeText(context.getApplicationContext(), "Please add audio download link", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-//                                      }
-//                    String filename = extractFilename();
-//                    downloadAudioPath = downloadAudioPath + File.separator + "Alquran" + File.separator + filename;
-//                    uberapp.itpvt.com.alquranmyapp.Adapters.SurahNameAdapter.DownloadFile downloadAudioFile = new uberapp.itpvt.com.alquranmyapp.Adapters.SurahNameAdapter.DownloadFile();
-//                    downloadAudioFile.execute(urlDownloadLink, downloadAudioPath);
-
-
-                }
-            });
+//            holder.tvSurahNameArabic.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mapItem = mapList.get(position);
+//                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
+//                    intent.putExtra("ayahNumber", mapItem.get("number") );
+//                    //  context.startActivity(intent);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    context.getApplicationContext().startActivity(intent);
+//                }
+//            });
+//            holder.tvSurahNameEnglish.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    mapItem = mapList.get(position);
+//                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
+//                    intent.putExtra("ayahNumber", mapItem.get("number") );
 //
-//        holder.play.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//            }
-//        });
+//                    //  context.startActivity(intent);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    context.getApplicationContext().startActivity(intent);
+//                }
+//            });
+//            holder.ivDownload.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+////                urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
+//                    urlDownloadLink = "http://192.168.10.4/alquran/" + mapItem.get("number") + ".mp3";
+//
+//
+//                    downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+//                    File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
+//                    if(!audioVoice.exists()){
+//                        audioVoice.mkdir();
+//                    }
+//
+//
+//                    if(urlDownloadLink.equals("")) {
+//                        Toast.makeText(context.getApplicationContext(), "Please add audio download link", Toast.LENGTH_LONG).show();
+//                        return;
+//                    }
+////                                      }
+////                    String filename = extractFilename();
+////                    downloadAudioPath = downloadAudioPath + File.separator + "Alquran" + File.separator + filename;
+////                    uberapp.itpvt.com.alquranmyapp.Adapters.SurahNameAdapter.DownloadFile downloadAudioFile = new uberapp.itpvt.com.alquranmyapp.Adapters.SurahNameAdapter.DownloadFile();
+////                    downloadAudioFile.execute(urlDownloadLink, downloadAudioPath);
+//
+//
+//                }
+//            });
+////
+////        holder.play.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View view) {
+////            }
+////        });
 
         }
 
