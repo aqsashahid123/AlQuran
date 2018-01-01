@@ -125,10 +125,19 @@ public class SurahTranslation extends AppCompatActivity {
 
                     String filename = extractFilename();
 //            mediaPlayer.setDataSource( downloadAudioPath + File.separator + "voices" + File.separator + filename);
+                    File file = new File( downloadAudioPath + File.separator + "Alquran" + File.separator +surahNum+".mp3");
+                    if (file.exists()) {
+                        mediaPlayer.setDataSource(downloadAudioPath + File.separator + "Alquran" + File.separator + surahNum + ".mp3");
+                        mediaPlayer.prepare();
+                        btnPlay.setVisibility(View.GONE);
+                        stop.setVisibility(View.VISIBLE);
+                    }
+                    else {
+                        Toast.makeText(SurahTranslation.this,"Please Download File",Toast.LENGTH_SHORT).show();
+                        seekBar.setVisibility(View.GONE);
+                       // stop.setVisibility(View.GONE);
+                    }
 
-                    mediaPlayer.setDataSource( downloadAudioPath + File.separator + "Alquran" + File.separator +surahNum+".mp3");
-
-                    mediaPlayer.prepare();
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -189,8 +198,7 @@ public class SurahTranslation extends AppCompatActivity {
 //                String type = "audio/mp3";
 //                intent.setDataAndType(data, type);
 //                startActivityForResult(intent, 1);
-                btnPlay.setVisibility(View.GONE);
-                stop.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -223,84 +231,123 @@ public class SurahTranslation extends AppCompatActivity {
 
 
                                         String surahName = surahData.getString("name");
-                                        for (int p = 0; p < surahData.length(); p++) {
-                                            mapListAyah = new ArrayList<>();
-                                            JSONArray ayah = surahData.getJSONArray("ayahs");
+                                        String surahNum = surahData.getString("number");
+                                        if (surahNum.equals("1")){
+                                            for (int s = 0; s< surahData.length(); s++){
 
-                                            for (int s = 0; s < ayah.length(); s++) {
-                                                JSONObject ayahObj = ayah.getJSONObject(s);
-                                                listItemAyah = new HashMap<>();
-                                                mapNumerItem = new HashMap<>();
-                                                if (s == 0) {
-                                                    String f = ayahObj.getString("text");
-                                                    String bis = f.substring(0, 38);
-                                                    String at = f.substring(38, f.length());
-                                                    listItemAyah.put("ayah", bis);
-                                                    mapListAyah.add(listItemAyah);
+                                                mapListAyah = new ArrayList<>();
+                                                JSONArray surahFatheAyah = surahData.getJSONArray("ayahs");
+                                                for (int h =0;h<surahFatheAyah.length();h++){
+
+                                                    JSONObject ayahObj = surahFatheAyah.getJSONObject(h);
                                                     listItemAyah = new HashMap<>();
-                                                    listItemAyah.put("ayah", at);
-                                                    mapListAyah.add(listItemAyah);
-                                                    mapNumerItem.put("number", ayahObj.getString("number"));
-                                                    mapNumberList.add(mapNumerItem);
                                                     mapNumerItem = new HashMap<>();
-                                                    mapNumerItem.put("number", ayahObj.getString("number"));
-                                                    mapNumberList.add(mapNumerItem);
-                                                } else if (s > 0) {
-//                                                listItemAyah.put(String.valueOf(i), ayahObj.getString("text"));
+
                                                     mapNumerItem.put("number", ayahObj.getString("number"));
 
                                                     listItemAyah.put("ayah", ayahObj.getString("text"));
                                                     mapNumberList.add(mapNumerItem);
                                                     mapListAyah.add(listItemAyah);
+
+
+                                                }
+                                            }
+
+                                        }
+
+                                        else {
+                                            for (int p = 0; p < surahData.length(); p++) {
+                                                mapListAyah = new ArrayList<>();
+                                                JSONArray ayah = surahData.getJSONArray("ayahs");
+
+                                                for (int s = 0; s < ayah.length(); s++) {
+                                                    JSONObject ayahObj = ayah.getJSONObject(s);
+                                                    listItemAyah = new HashMap<>();
+                                                    mapNumerItem = new HashMap<>();
+                                                    if (s == 0) {
+                                                        String f = ayahObj.getString("text");
+                                                        String bis = f.substring(0, 38);
+                                                        String at = f.substring(38, f.length());
+                                                        listItemAyah.put("ayah", bis);
+                                                        mapListAyah.add(listItemAyah);
+                                                        listItemAyah = new HashMap<>();
+                                                        listItemAyah.put("ayah", at);
+                                                        mapListAyah.add(listItemAyah);
+                                                        mapNumerItem.put("number", ayahObj.getString("number"));
+                                                        mapNumberList.add(mapNumerItem);
+                                                        mapNumerItem = new HashMap<>();
+                                                        mapNumerItem.put("number", ayahObj.getString("number"));
+                                                        mapNumberList.add(mapNumerItem);
+                                                    } else if (s > 0) {
+//                                                listItemAyah.put(String.valueOf(i), ayahObj.getString("text"));
+                                                        mapNumerItem.put("number", ayahObj.getString("number"));
+
+                                                        listItemAyah.put("ayah", ayahObj.getString("text"));
+                                                        mapNumberList.add(mapNumerItem);
+                                                        mapListAyah.add(listItemAyah);
+                                                    }
+
                                                 }
 
                                             }
 
                                         }
-
 
                                         break;
                                     case 1:
 
                                         JSONObject surahTranslationData = data.getJSONObject(i);
+                                  surahNum = surahTranslationData.getString("number");
 
 
-                                        for (int p = 0; p < surahTranslationData.length(); p++) {
-                                            //  String surahName = surahTranslationData.getString("name");
+                                        if (surahNum.equals("1")){
                                             mapListAyahTranslation = new ArrayList<>();
-                                            JSONArray ayahTranslation = surahTranslationData.getJSONArray("ayahs");
-
-                                            for (int s = 0; s < ayahTranslation.length(); s++) {
-
+                                            JSONArray ayahTranslationFateha = surahTranslationData.getJSONArray("ayahs");
+                                            for (int s = 0; s < ayahTranslationFateha.length(); s++) {
                                                 listItemAyahTranslation = new HashMap<>();
-                                                JSONObject ayahObj = ayahTranslation.getJSONObject(s);
-                                                if (s == 0) {
-                                                    String f = ayahObj.getString("text");
-//                                                        String bis = f.substring(0,18);
-//                                                        String at = f.substring(18,8);
-                                                    listItemAyahTranslation.put("translation", "  ");
-                                                    mapListAyahTranslation.add(listItemAyahTranslation);
-                                                    listItemAyahTranslation = new HashMap<>();
-                                                    // listItemAyahTranslation.clear();
-                                                    listItemAyahTranslation.put("translation", f);
-                                                    mapListAyahTranslation.add(listItemAyahTranslation);
-
-                                                }
-
-                                                // listItemAyahTranslation = new HashMap<>();
-
-//                                                listItemAyahTranslation.put(String.valueOf(i), ayahObj.getString("text"));
-                                                else if (s > 0) {
-                                                    listItemAyahTranslation.put("translation", ayahObj.getString("text"));
-                                                    mapListAyahTranslation.add(listItemAyahTranslation);
-
-                                                }
-
+                                                JSONObject ayahObj = ayahTranslationFateha.getJSONObject(s);
+                                                listItemAyahTranslation.put("translation", ayahObj.getString("text"));
+                                                mapListAyahTranslation.add(listItemAyahTranslation);
 
                                             }
-
                                         }
+                                        else {
+                                            for (int p = 0; p < surahTranslationData.length(); p++) {
+                                                //  String surahName = surahTranslationData.getString("name");
+                                                mapListAyahTranslation = new ArrayList<>();
+                                                JSONArray ayahTranslation = surahTranslationData.getJSONArray("ayahs");
 
+                                                for (int s = 0; s < ayahTranslation.length(); s++) {
+
+                                                    listItemAyahTranslation = new HashMap<>();
+                                                    JSONObject ayahObj = ayahTranslation.getJSONObject(s);
+                                                    if (s == 0) {
+                                                        String f = ayahObj.getString("text");
+//                                                        String bis = f.substring(0,18);
+//                                                        String at = f.substring(18,8);
+                                                        listItemAyahTranslation.put("translation", "  ");
+                                                        mapListAyahTranslation.add(listItemAyahTranslation);
+                                                        listItemAyahTranslation = new HashMap<>();
+                                                        // listItemAyahTranslation.clear();
+                                                        listItemAyahTranslation.put("translation", f);
+                                                        mapListAyahTranslation.add(listItemAyahTranslation);
+
+                                                    }
+
+                                                    // listItemAyahTranslation = new HashMap<>();
+
+//                                                listItemAyahTranslation.put(String.valueOf(i), ayahObj.getString("text"));
+                                                    else if (s > 0) {
+                                                        listItemAyahTranslation.put("translation", ayahObj.getString("text"));
+                                                        mapListAyahTranslation.add(listItemAyahTranslation);
+
+                                                    }
+
+
+                                                }
+
+                                            }
+                                        }
                                         break;
                                 }
 //                                if (i==1){

@@ -94,7 +94,9 @@ public class SurahNameAdapter extends RecyclerView.Adapter<SurahNameAdapter.Sura
         holder.ivDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
+//                urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
+                urlDownloadLink = "http://192.168.10.4/alquran/" + mapItem.get("number") + ".mp3";
+
 
                 downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
                 File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
