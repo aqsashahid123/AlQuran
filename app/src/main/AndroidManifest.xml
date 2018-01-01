@@ -14,15 +14,18 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainActivity">
             //////////////
+
+        </activity>
+        <activity android:name=".Activities.SurahTranslation" />
+        <activity android:name=".SoundActivity" />
+        <activity android:name=".Activities.MenuActivity" />
+        <activity android:name=".Activities.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SurahTranslation"></activity>
-        <activity android:name=".SoundActivity"></activity>
-        <activity android:name=".Activities.MenuActivity"></activity>
     </application>
 
 </manifest>
