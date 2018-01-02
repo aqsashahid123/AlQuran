@@ -64,9 +64,10 @@ public class SurahTranslation extends AppCompatActivity {
     List<HashMap<String, String>> mapListAyahTranslation;
     List<HashMap<String, String>> mapListAyah;
     List<HashMap<String, String>> mapNumberList;
-    Button btnPlay;
+    Button btnPlay,resume,pause;
 
     HashMap<String, String> mapNumerItem;
+
 
     //List<HashMap<String,String>> mapListTranslation;
 
@@ -86,6 +87,30 @@ public class SurahTranslation extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.recycler_view);
 
         btnPlay = (Button) findViewById(R.id.btnPlay);
+
+        resume=(Button)findViewById(R.id.play);
+
+        pause=(Button)findViewById(R.id.pause);
+        resume.setVisibility(View.GONE);
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer.pause();
+//                btnPlay.setVisibility(View.VISIBLE);
+                resume.setVisibility(View.VISIBLE);
+                pause.setVisibility(View.GONE);
+            }
+        });
+        resume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayer.start();
+
+                pause.setVisibility(View.VISIBLE);
+                btnPlay.setVisibility(View.GONE);
+                resume.setVisibility(View.GONE);
+            }
+        });
         mapNumerItem = new HashMap<>();
         mapNumberList = new ArrayList<>();
         surahNum = getIntent().getStringExtra("ayahNumber");
@@ -132,6 +157,8 @@ public class SurahTranslation extends AppCompatActivity {
                         mediaPlayer.prepare();
                         btnPlay.setVisibility(View.GONE);
                         stop.setVisibility(View.VISIBLE);
+                        resume.setVisibility(View.GONE);
+                        pause.setVisibility(View.VISIBLE);
                     }
                     else {
                         Toast.makeText(SurahTranslation.this,"Please Download File",Toast.LENGTH_SHORT).show();
