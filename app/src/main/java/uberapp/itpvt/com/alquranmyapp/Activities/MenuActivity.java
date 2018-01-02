@@ -240,6 +240,7 @@ public class MenuActivity extends AppCompatActivity {
                     rv.setLayoutManager(llm);
                     rv.setAdapter(adapter);
 
+
                 }
             }                //     listView.setAdapter(leaves_adapter);
 
