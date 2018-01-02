@@ -46,18 +46,19 @@ public class Player extends AppCompatActivity {
         start=(Button)findViewById(R.id.start);
         stop=(Button)findViewById(R.id.stop);
         download=(Button)findViewById(R.id.download);
+
+        downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
+        if(!audioVoice.exists()){
+            audioVoice.mkdir();
+        }
+
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 urlDownloadLink = "http://192.168.10.4/alquran/114.mp3";
                 urlDownloadLink = "http://192.168.10.4/alquran/" + surahNum + ".mp3";
 
-
-                downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-                File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
-                if(!audioVoice.exists()){
-                    audioVoice.mkdir();
-                }
 
 
                 if(urlDownloadLink.equals("")){
