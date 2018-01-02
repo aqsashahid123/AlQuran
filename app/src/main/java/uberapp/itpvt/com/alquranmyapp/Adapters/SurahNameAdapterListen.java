@@ -25,6 +25,7 @@ import java.util.List;
 
 import uberapp.itpvt.com.alquranmyapp.Activities.MainActivity;
 import uberapp.itpvt.com.alquranmyapp.Activities.Player;
+import uberapp.itpvt.com.alquranmyapp.Activities.SurahNameListen;
 import uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation;
 import uberapp.itpvt.com.alquranmyapp.R;
 
@@ -195,16 +196,16 @@ private class DownloadFile extends AsyncTask<String, Integer, String> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        MainActivity.progressbar.setVisibility(ProgressBar.VISIBLE);
-        MainActivity.tvMessage.setVisibility(TextView.VISIBLE);
+        SurahNameListen.progressbar.setVisibility(ProgressBar.VISIBLE);
+        SurahNameListen.tvMessage.setVisibility(TextView.VISIBLE);
 
     }
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        MainActivity.progressbar.setVisibility(ProgressBar.GONE);
-        MainActivity.tvMessage.setVisibility(TextView.GONE);
+        SurahNameListen.progressbar.setVisibility(ProgressBar.GONE);
+        SurahNameListen.tvMessage.setVisibility(TextView.GONE);
     }
 }
 

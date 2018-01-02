@@ -1,5 +1,6 @@
 package uberapp.itpvt.com.alquranmyapp.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -50,6 +51,7 @@ public class SurahNameListen extends AppCompatActivity {
     LinearLayoutManager layoutManager;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    private ProgressDialog loading;
 
 
 
@@ -70,8 +72,7 @@ public class SurahNameListen extends AppCompatActivity {
 
         toolbar.inflateMenu(R.menu.toolbar_menu);
         toolbar.setTitle("Al Quran");
-//        navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
 //        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 //
@@ -90,8 +91,8 @@ public class SurahNameListen extends AppCompatActivity {
 //                return true;
 //            }
 //        });
-
-
+//
+//
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -112,14 +113,14 @@ public class SurahNameListen extends AppCompatActivity {
 //            }
 //        });
 
-
+        loading = ProgressDialog.show(SurahNameListen.this,"Loading...","Please wait...",false,false);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
 
-                     //   Toast.makeText(SurahNameListen.this, response, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SurahNameListen.this, response, Toast.LENGTH_SHORT).show();
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray data = obj.getJSONArray("data");
@@ -142,7 +143,7 @@ public class SurahNameListen extends AppCompatActivity {
 
                             rv.setAdapter(adapter);
                             rv.setLayoutManager(llm);
-
+                            loading.dismiss();
                         }
 
                         catch (JSONException e) {
@@ -154,7 +155,8 @@ public class SurahNameListen extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 //                tvSurah.setText("That didn't work!");
-                Toast.makeText(getApplicationContext(),String.valueOf(error),Toast.LENGTH_SHORT).show();
+                loading.dismiss();
+                Toast.makeText(SurahNameListen.this,"No Inherent",Toast.LENGTH_SHORT).show();
 
             }
         });
