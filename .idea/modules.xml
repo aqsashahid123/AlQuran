@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AlQuran.iml" filepath="$PROJECT_DIR$/AlQuran.iml" />
       <module fileurl="file://C:\Users\Mahek\AndroidStudioProjects\AlQuranMyApp\AlQuran.iml" filepath="C:\Users\Mahek\AndroidStudioProjects\AlQuranMyApp\AlQuran.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AlQuranMyApp.iml" filepath="$PROJECT_DIR$/AlQuranMyApp.iml" />
       <module fileurl="file://D:\AlQuran\AlQuranMyApp.iml" filepath="D:\AlQuran\AlQuranMyApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

@@ -114,6 +114,7 @@ public class Player extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 seekBar.setVisibility(View.VISIBLE);
+                seekBar.setEnabled(true);
 
                 mediaPlayer = new MediaPlayer();
                 mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
