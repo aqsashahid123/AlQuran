@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -28,17 +29,19 @@ public class Player extends AppCompatActivity {
 
     SeekBar seekBar;
     Button stop,play,start,pause,download;
-    String surahNum;
+    String surahNum,surahName;
     MediaPlayer mediaPlayer;
     private String downloadAudioPath;
     Runnable runnable;
     private String urlDownloadLink = "";
     Handler handler;
+    TextView s_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
         surahNum = getIntent().getStringExtra("ayahNumber");
+        surahName = getIntent().getStringExtra("surahName");
         handler= new Handler();
         seekBar=(SeekBar)findViewById(R.id.seekBar);
         play=(Button)findViewById(R.id.play);
@@ -46,6 +49,8 @@ public class Player extends AppCompatActivity {
         start=(Button)findViewById(R.id.start);
         stop=(Button)findViewById(R.id.stop);
         download=(Button)findViewById(R.id.download);
+        s_name=(TextView)findViewById(R.id.s_name);
+        s_name.setText(surahName);
 
         downloadAudioPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         File audioVoice = new File(downloadAudioPath + File.separator + "Alquran");
@@ -82,6 +87,8 @@ public class Player extends AppCompatActivity {
                 mediaPlayer.stop();
                 start.setVisibility(View.VISIBLE);
                 stop.setVisibility(View.GONE);
+                play.setVisibility(View.GONE);
+                pause.setVisibility(View.VISIBLE);
             }
         });
         play.setOnClickListener(new View.OnClickListener() {

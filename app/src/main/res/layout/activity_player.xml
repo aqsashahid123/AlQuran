@@ -9,13 +9,25 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_menu_screen"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.Player">
-    <SeekBar
+
+    <TextView
         android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textSize="19sp"
+        android:textColorHint="@color/Text_color"
+        android:textColor="@color/Text_color"
+        android:layout_height="wrap_content"
+        android:hint="Surah Name"
+        android:id="@+id/s_name"
+        />
+    <SeekBar
         android:id="@+id/seekBar"
-        android:thumbTint="@color/Text_color"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:progressTint="@color/Text_color"
-        android:layout_height="wrap_content" />
+        android:thumbTint="@color/Text_color" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_marginTop="30dp"

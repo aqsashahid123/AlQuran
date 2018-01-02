@@ -67,12 +67,12 @@ public class SurahNameListen extends AppCompatActivity {
         listItem = new HashMap<>();
         rv = (RecyclerView) findViewById(R.id.recycler_view);
         tvMessage = (TextView) findViewById(R.id.tvMessage);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-        toolbar.inflateMenu(R.menu.toolbar_menu);
-        toolbar.setTitle("Al Quran");
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        toolbar = (Toolbar) findViewById(R.id.toolbar);
+//
+//
+//        toolbar.inflateMenu(R.menu.toolbar_menu);
+//        toolbar.setTitle("Al Quran");
+//        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
 //        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
 //
@@ -120,7 +120,7 @@ public class SurahNameListen extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
 
-                        Toast.makeText(SurahNameListen.this, response, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SurahNameListen.this, response, Toast.LENGTH_SHORT).show();
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray data = obj.getJSONArray("data");

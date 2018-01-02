@@ -84,6 +84,7 @@ public void onClick(View view) {
         mapItem = mapList.get(position);
         Intent intent = new Intent(context.getApplicationContext(), Player.class);
         intent.putExtra("ayahNumber", mapItem.get("number") );
+        intent.putExtra("surahName",mapItem.get("englishName"));
 
         //  context.startActivity(intent);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
