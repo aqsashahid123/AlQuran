@@ -60,52 +60,52 @@ public class MainActivity extends AppCompatActivity {
         listItem = new HashMap<>();
         rv = (RecyclerView) findViewById(R.id.recycler_view);
         tvMessage = (TextView) findViewById(R.id.tvMessage);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+     //   toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
-        toolbar.inflateMenu(R.menu.toolbar_menu);
-        toolbar.setTitle("Al Quran");
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//        toolbar.inflateMenu(R.menu.toolbar_menu);
+//        toolbar.setTitle("Al Quran");
+//        navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+//
+//
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                switch (item.getItemId()) {
+//
+//                    case R.id.openMenu:
+//                        drawerLayout.openDrawer(Gravity.RIGHT);
+//                        break;
+//
+//                }
+//
+//
+//                return true;
+//            }
+//        });
+//
 
-
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-
-                    case R.id.openMenu:
-                        drawerLayout.openDrawer(Gravity.RIGHT);
-                        break;
-
-                }
-
-
-                return true;
-            }
-        });
-
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-
-                    case R.id.recitation:
-
-
-                        Intent intent = new Intent(MainActivity.this,RecitationActivity.class);
-                        startActivity(intent);
-
-                        break;
-
-                }
-
-
-                return true;
-            }
-        });
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()){
+//
+//                    case R.id.recitation:
+//
+//
+//                        Intent intent = new Intent(MainActivity.this,RecitationActivity.class);
+//                        startActivity(intent);
+//
+//                        break;
+//
+//                }
+//
+//
+//                return true;
+//            }
+//        });
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
 
-                        Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray data = obj.getJSONArray("data");
