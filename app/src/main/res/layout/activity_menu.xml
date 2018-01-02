@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg_menu_screen"
+    android:background="@drawable/bg"
     android:layout_height="match_parent"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.MenuActivity">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/ivLogo"
+        android:layout_margin="10dp"
+        android:src="@drawable/logo"/>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="1"
+android:layout_below="@+id/ivLogo"
     android:orientation="vertical"
+    android:id="@+id/lvMain"
     android:gravity="bottom"
     android:layout_margin="20dp"
     android:padding="10dp"
     android:layout_gravity="bottom">
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lvRead"
+
         android:orientation="horizontal">
 
         <ImageView
@@ -84,19 +94,20 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        android:id="@+id/rv"/>
 </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/lvMain"
         android:orientation="vertical">
 
-
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/rv"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

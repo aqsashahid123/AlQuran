@@ -55,7 +55,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHold
         @Override
         public SearchHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.row_surah_names, parent, false);
+                    .inflate(R.layout.row_rv_search_surah, parent, false);
 
             return new SearchHolder(itemView);
 
@@ -67,31 +67,31 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchHold
             //mapItem = new HashMap<>();
             //mapItem = mapList.get(position);
        //     holder.tvSurahNameEnglish.setText(mapItem.get("englishName"));
-            holder.tvSurahNameArabic.setText(searchData.get(position).getName());
-
-//            holder.tvSurahNameArabic.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mapItem = mapList.get(position);
-//                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
-//                    intent.putExtra("ayahNumber", mapItem.get("number") );
-//                    //  context.startActivity(intent);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.getApplicationContext().startActivity(intent);
-//                }
-//            });
-//            holder.tvSurahNameEnglish.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    mapItem = mapList.get(position);
-//                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
-//                    intent.putExtra("ayahNumber", mapItem.get("number") );
-//
-//                    //  context.startActivity(intent);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    context.getApplicationContext().startActivity(intent);
-//                }
-//            });
+            holder.tvSurahNameArabic.setText(searchData.get(position).getArabicName());
+            holder.tvSurahNameEnglish.setText(searchData.get(position).getName());
+            holder.tvSurahNameArabic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //mapItem = mapList.get(position);
+                    searchData.get(position).getNumber();
+                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
+                    intent.putExtra("ayahNumber", searchData.get(position).getNumber() );
+                    //  context.startActivity(intent);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+            holder.tvSurahNameEnglish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    searchData.get(position).getNumber();
+                    Intent intent = new Intent(context.getApplicationContext(), SurahTranslation.class);
+                    intent.putExtra("ayahNumber", searchData.get(position).getNumber() );
+                    //  context.startActivity(intent);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
 //            holder.ivDownload.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View view) {

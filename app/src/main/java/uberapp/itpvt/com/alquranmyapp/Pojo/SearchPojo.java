@@ -30,4 +30,14 @@ public class SearchPojo {
     String name;
     String number;
 
+    public String getArabicName() {
+        return arabicName;
+    }
+
+    public void setArabicName(String arabicName) {
+        this.arabicName = arabicName;
+    }
+
+    String arabicName;
+
 }

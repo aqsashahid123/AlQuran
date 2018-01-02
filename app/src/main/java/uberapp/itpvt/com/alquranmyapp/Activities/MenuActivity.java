@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
     RecyclerView rv;
     List<HashMap<String,String>> mapList;
     ArrayList<String> searchData;
+    ImageView ivLogo;
     HashMap<String,String> listItem;
     ArrayList<SearchPojo> dataList;
     SearchAdapter adapter;
@@ -54,7 +56,7 @@ public class MenuActivity extends AppCompatActivity {
 
         dataList = new ArrayList<>();
 
-
+        ivLogo = (ImageView) findViewById(R.id.ivLogo);
         etSearch = (EditText) findViewById(R.id.tvSearch);
         lvSearch = (LinearLayout) findViewById(R.id.lvSearch);
         lvRead = (LinearLayout) findViewById(R.id.lvRead);
@@ -94,6 +96,7 @@ public class MenuActivity extends AppCompatActivity {
                                 SearchPojo myPojo = new SearchPojo();
                                 myPojo.setName(surahNameData.getString("englishName"));
                                 myPojo.setNumber(surahNameData.getString("number"));
+                                myPojo.setArabicName(surahNameData.getString("name"));
                                 // tvSurah.setText(dataStr);
 //                                listItem.put("englishName",surahNameData.getString("englishName") );
 //                                listItem.put("name",surahNameData.getString("name"));
@@ -137,9 +140,9 @@ public class MenuActivity extends AppCompatActivity {
 //            public void onFocusChange(View view, boolean b) {
 //                if (b){
 //
-////                    lvListen.setVisibility(View.GONE);
-////                    lvRead.setVisibility(View.GONE);
-////                    rv.setVisibility(View.VISIBLE);
+//                    lvListen.setVisibility(View.GONE);
+//                    lvRead.setVisibility(View.GONE);
+//                    rv.setVisibility(View.VISIBLE);
 //
 //
 //                }
@@ -201,27 +204,43 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                rv.setVisibility(View.VISIBLE);
+
                 String nameToSearch = etSearch.getText().toString();
-                ArrayList<SearchPojo> filteredLeaves = new ArrayList<SearchPojo>();
-
-                for (SearchPojo data : dataList) {
-                    if (data.getName().toLowerCase().contains(nameToSearch.toLowerCase()) ) {
-                        filteredLeaves.add(data);
-                    }
-
-
+                if (nameToSearch.length()==0){
+                    ivLogo.setVisibility(View.VISIBLE);
+                    lvListen.setVisibility(View.VISIBLE);
+                    lvRead.setVisibility(View.VISIBLE);
+                    rv.setVisibility(View.GONE);
 
                 }
+
+                else {
+                    rv.setVisibility(View.VISIBLE);
+                    ArrayList<SearchPojo> filteredLeaves = new ArrayList<SearchPojo>();
+
+                    for (SearchPojo data : dataList) {
+                        if (data.getName().toLowerCase().contains(nameToSearch.toLowerCase())) {
+                            filteredLeaves.add(data);
+                        }
+
+
+                    }
                 /*leaveDatas.clear();
                 leaveDatas.addAll(filteredLeaves);
+
                 leaves_adapter.notifyDataSetChanged();*/
-                LinearLayoutManager llm = new LinearLayoutManager(MenuActivity.this);
-                adapter = new SearchAdapter(MenuActivity.this, filteredLeaves);
-                rv.setLayoutManager(llm);
-                rv.setAdapter(adapter);
+                    lvRead.setVisibility(View.GONE);
+                    lvListen.setVisibility(View.GONE);
+                    lvSearch.setVisibility(View.VISIBLE);
+                    ivLogo.setVisibility(View.GONE);
+                    rv.setVisibility(View.VISIBLE);
 
+                    LinearLayoutManager llm = new LinearLayoutManager(MenuActivity.this);
+                    adapter = new SearchAdapter(MenuActivity.this, filteredLeaves);
+                    rv.setLayoutManager(llm);
+                    rv.setAdapter(adapter);
 
+                }
             }                //     listView.setAdapter(leaves_adapter);
 
 

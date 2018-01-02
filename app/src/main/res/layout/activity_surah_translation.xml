@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f3e3a2"
     android:orientation="vertical"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation">
 
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
         <Button
