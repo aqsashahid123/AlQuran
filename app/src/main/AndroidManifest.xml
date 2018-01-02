@@ -15,20 +15,29 @@
         <activity android:name=".Activities.MainActivity">
             //////////////
         </activity>
-        <activity android:name=".Activities.SurahTranslation"></activity>
-        <activity android:name=".SoundActivity"></activity>
-        <activity android:name=".Activities.MenuActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Activities.SurahTranslation">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".SoundActivity">
+
+        </activity>
+        <activity android:name=".Activities.MenuActivity">
 
 
 
         </activity>
         <activity android:name=".Activities.SurahNameListen" />
-        <activity android:name=".Activities.Player"></activity>
+        <activity android:name=".Activities.Player">
+
+        </activity>
+        <activity android:name=".Activities.Splash">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
