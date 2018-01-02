@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.MainActivity">
             //////////////
-
         </activity>
         <activity android:name=".Activities.SurahTranslation"></activity>
         <activity android:name=".SoundActivity"></activity>
@@ -28,6 +27,8 @@
 
 
         </activity>
+        <activity android:name=".Activities.SurahNameListen" />
+        <activity android:name=".Activities.Player"></activity>
     </application>
 
 </manifest>
