@@ -1,5 +1,6 @@
 package uberapp.itpvt.com.alquranmyapp.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -253,6 +254,23 @@ public class MenuActivity extends AppCompatActivity {
         });
 
 
+
+        lvListen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this,SurahNameListen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        lvRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 
