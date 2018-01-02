@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f3e3a2"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     tools:context="uberapp.itpvt.com.alquranmyapp.Activities.SurahTranslation">
 
@@ -24,7 +24,7 @@
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@drawable/playbtn"
+            android:background="@drawable/play_yellow"
             android:id="@+id/btnPlay"
             />
         <Button
@@ -32,7 +32,7 @@
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@drawable/stop"
+            android:background="@drawable/pause_yellow"
             android:id="@+id/btnstop" />
     </LinearLayout>
 

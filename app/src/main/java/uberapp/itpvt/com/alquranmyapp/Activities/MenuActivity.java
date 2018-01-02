@@ -1,5 +1,6 @@
 package uberapp.itpvt.com.alquranmyapp.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,7 +79,9 @@ public class MenuActivity extends AppCompatActivity {
 
 
         rv = (RecyclerView) findViewById(R.id.rv);
-
+        final ProgressDialog pd = new ProgressDialog(MenuActivity.this);
+        pd.setMessage("loading");
+        pd.show();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, urlJsonObj,
                 new Response.Listener<String>() {
                     @Override
@@ -86,6 +89,7 @@ public class MenuActivity extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
 
                    //     Toast.makeText(MenuActivity.this, response, Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray data = obj.getJSONArray("data");
@@ -128,7 +132,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 //                tvSurah.setText("That didn't work!");
-                Toast.makeText(getApplicationContext(),String.valueOf(error),Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+                Toast.makeText(getApplicationContext(),"No Internet",Toast.LENGTH_SHORT).show();
 
             }
         });

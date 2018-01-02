@@ -1,5 +1,6 @@
 package uberapp.itpvt.com.alquranmyapp.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -207,7 +208,9 @@ public class SurahTranslation extends AppCompatActivity {
 
         // intent.getStringExtra("ayahNumber");
         url = EndPoints.BASE_URL_SURAH + "/" + surahNum + "/editions/quran-uthmani,en.asad";
-
+        final ProgressDialog pd = new ProgressDialog(SurahTranslation.this);
+        pd.setMessage("loading");
+        pd.show();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -215,7 +218,10 @@ public class SurahTranslation extends AppCompatActivity {
                         // Display the first 500 characters of the response string.
                         mapListAyahTranslation = new ArrayList<>();
                         mapListAyah = new ArrayList<>();
-                        Toast.makeText(SurahTranslation.this, response, Toast.LENGTH_SHORT).show();
+                        pd.dismiss();
+                       // Toast.makeText(SurahTranslation.this, response, Toast.LENGTH_SHORT).show();
+
+
                         try {
                             JSONObject obj = new JSONObject(response);
                             //  JSONObject dataObj = obj.getJSONObject("data");
@@ -401,7 +407,8 @@ public class SurahTranslation extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 //                tvSurah.setText("That didn't work!");
-                Toast.makeText(getApplicationContext(), String.valueOf(error), Toast.LENGTH_SHORT).show();
+                pd.dismiss();
+                Toast.makeText(getApplicationContext(), "No Internet", Toast.LENGTH_SHORT).show();
 
             }
         });

@@ -27,7 +27,7 @@
         android:id="@+id/ayah"
         android:textStyle="bold"
 
-        android:textColor="#022a16"
+        android:textColor="#f3e3a2"
         android:padding="5dp"
 
         android:textSize="15sp"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/translation"
         android:visibility="gone"
-        android:textColor="#000"
+        android:textColor="#f3e3a2"
         android:gravity="center"
         android:textSize="15sp"
         android:text="Translation AYAH"/>
@@ -53,5 +53,13 @@
 
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+
+
+       />
 
 </LinearLayout>
